@@ -1,0 +1,7 @@
+product update or delete verify ho k execute h
+-->
+
+if (product.createdBy.toString() !== req.user) {
+  return res.status(403).json({ message: "Not allowed" });
+}
+------------------------------------------------------------------------------------------
