@@ -21,7 +21,7 @@ function Dashboard() {
 
     const loadProducts = async () => {
       const res = await axios.get(
-        "http://localhost:5000/product",
+        "https://user-project-management.onrender.com/product",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ function Dashboard() {
 
   const handleDelete = async (id) => {
     await axios.delete(
-      `http://localhost:5000/product/${id}`,
+      `https://user-project-management.onrender.com/product/${id}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

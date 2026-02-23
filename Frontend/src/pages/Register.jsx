@@ -13,7 +13,7 @@ function Register() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/user/register", {
+      await axios.post("https://user-project-management.onrender.com/user/register", {
         name,
         email,
         password,
