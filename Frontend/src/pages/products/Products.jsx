@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function Products() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,10 +26,15 @@ function Products() {
           }
         );
 
-        setProducts(res.data.data);
+        // 2 second artificial delay
+        setTimeout(() => {
+          setProducts(res.data.data);
+          setLoading(false);
+        }, 2000);
 
       } catch (error) {
         console.log("ERROR:", error.response);
+        setLoading(false);
       }
     };
 
@@ -42,11 +48,30 @@ function Products() {
         Your Products
       </h1>
 
-      {products.length === 0 ? (
-        <div className="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-lg text-center text-gray-600">
-          No products found. Start by adding one 🚀
+      {/* 🔵 Loading State */}
+      {loading && (
+        <div className="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-lg text-center text-indigo-600 font-semibold">
+          Fetching Products... Please wait ⏳
         </div>
-      ) : (
+      )}
+
+      {/* 🔴 No Products */}
+      {!loading && products.length === 0 && (
+        <div className="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-lg text-center">
+          <p className="text-gray-600 mb-4">
+            No products found.
+          </p>
+          <button
+            onClick={() => navigate("/add-product")}
+            className="bg-indigo-500 text-white px-6 py-2 rounded-lg hover:bg-indigo-600 transition"
+          >
+            ➕ Add Products
+          </button>
+        </div>
+      )}
+
+      {/* 🟢 Products Available */}
+      {!loading && products.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {products.map((product) => (
             <div
