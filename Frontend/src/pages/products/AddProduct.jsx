@@ -17,7 +17,7 @@ function AddProduct() {
 
     try {
       await axios.post(
-        "http://localhost:5000/product",
+        "https://user-project-management.onrender.com/product",
         {
           name,
           price: Number(price),
