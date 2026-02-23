@@ -26,11 +26,10 @@ function Products() {
           }
         );
 
-        // 2 second artificial delay
         setTimeout(() => {
           setProducts(res.data.data);
           setLoading(false);
-        }, 2000);
+        }, 1000);
 
       } catch (error) {
         console.log("ERROR:", error.response);
@@ -48,14 +47,14 @@ function Products() {
         Your Products
       </h1>
 
-      {/* 🔵 Loading State */}
+      {/* Loading State */}
       {loading && (
         <div className="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-lg text-center text-indigo-600 font-semibold">
           Fetching Products... Please wait ⏳
         </div>
       )}
 
-      {/* 🔴 No Products */}
+      {/*  No Products */}
       {!loading && products.length === 0 && (
         <div className="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-lg text-center">
           <p className="text-gray-600 mb-4">
@@ -70,7 +69,7 @@ function Products() {
         </div>
       )}
 
-      {/* 🟢 Products Available */}
+      {/* Products Available */}
       {!loading && products.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {products.map((product) => (
