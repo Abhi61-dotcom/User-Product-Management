@@ -9,9 +9,11 @@ function AddProduct() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
+  const [loading,setLoading]=useState(false)
 
   const handleAdd = async (e) => {
     e.preventDefault();
+    setLoading(true)
 
     const token = sessionStorage.getItem("token");
 
@@ -35,6 +37,9 @@ function AddProduct() {
 
     } catch (error) {
       alert(error.response?.data?.message);
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -75,9 +80,16 @@ function AddProduct() {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <button className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-3 rounded-lg font-semibold hover:scale-105 transition duration-200 shadow-md">
-          ➕ Add Product
-        </button>
+        <button
+            disabled={loading}
+            className={`w-full py-3 rounded-lg font-semibold shadow-md transition duration-200 
+              ${loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-gradient-to-r from-indigo-500 to-purple-500 hover:scale-105 text-white"
+              }`}
+          >
+            {loading ? "Adding..." : "➕ Add Product"}
+          </button>
       </form>
 
     </div>

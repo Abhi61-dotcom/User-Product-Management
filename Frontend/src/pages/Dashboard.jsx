@@ -51,7 +51,7 @@ function Dashboard() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-blue-100 to-purple-100 p-10">
+    <div className="min-h-screen bg-gradient-to-r from-indigo-100 via-blue-100 to-purple-100 p-10">
 
       <h1 className="text-4xl font-bold mb-10 text-gray-800">
         Welcome back, <span className="text-indigo-600">{name}</span> 👋
